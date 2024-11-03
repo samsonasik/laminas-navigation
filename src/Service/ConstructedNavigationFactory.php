@@ -12,15 +12,11 @@ use Psr\Container\ContainerInterface;
  */
 class ConstructedNavigationFactory extends AbstractNavigationFactory
 {
-    /** @var string|Config|array */
-    protected $config;
-
     /**
      * @param string|Config|array $config
      */
-    public function __construct($config)
+    public function __construct(protected $config)
     {
-        $this->config = $config;
     }
 
     /**

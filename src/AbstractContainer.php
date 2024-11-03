@@ -530,11 +530,7 @@ abstract class AbstractContainer implements Countable, RecursiveIterator
     {
         $hash = key($this->index);
 
-        if (isset($this->pages[$hash])) {
-            return $this->pages[$hash];
-        }
-
-        return null;
+        return $this->pages[$hash] ?? null;
     }
 
     // Countable interface:

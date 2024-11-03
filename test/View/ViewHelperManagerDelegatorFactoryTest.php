@@ -16,9 +16,7 @@ class ViewHelperManagerDelegatorFactoryTest extends TestCase
     {
         $services = new ServiceManager();
         $helpers  = new HelperPluginManager($services);
-        $callback = function () use ($helpers) {
-            return $helpers;
-        };
+        $callback = fn() => $helpers;
 
         $factory = new ViewHelperManagerDelegatorFactory();
         $this->assertSame($helpers, $factory($services, 'ViewHelperManager', $callback));

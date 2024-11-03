@@ -70,9 +70,6 @@
     <InvalidNullableReturnType>
       <code><![CDATA[string]]></code>
     </InvalidNullableReturnType>
-    <InvalidToString>
-      <code><![CDATA[string]]></code>
-    </InvalidToString>
     <LessSpecificImplementedReturnType>
       <code><![CDATA[array{
      *     label: string|null,
@@ -130,7 +127,6 @@
                 null]]></code>
     </MixedReturnStatement>
     <NullableReturnStatement>
-      <code><![CDATA[$this->label]]></code>
       <code><![CDATA[$this->label]]></code>
       <code><![CDATA[$this->rel[$relation] ?? null]]></code>
       <code><![CDATA[$this->rev[$relation] ??
@@ -910,7 +906,7 @@
   </file>
   <file src="test/View/ViewHelperManagerDelegatorFactoryTest.php">
     <MissingClosureReturnType>
-      <code><![CDATA[function () use ($helpers) {]]></code>
+      <code><![CDATA[fn() => $helpers]]></code>
     </MissingClosureReturnType>
   </file>
 </files>
