@@ -13,8 +13,7 @@ use Laminas\Router\RouteStackInterface;
 use function array_intersect_assoc;
 use function array_merge;
 use function count;
-use function gettype;
-use function is_object;
+use function get_debug_type;
 use function is_string;
 use function sprintf;
 use function strlen;
@@ -250,16 +249,13 @@ class Mvc extends AbstractPage
             $params['action'] = $param;
         }
 
-        switch (true) {
-            case $this->getRoute() !== null || static::getDefaultRoute() !== null:
-                $name = $this->getRoute() ?? static::getDefaultRoute();
-                break;
-            case $this->getRouteMatch() !== null:
-                $name = $this->getRouteMatch()->getMatchedRouteName();
-                break;
-            default:
-                throw new Exception\DomainException('No route name could be found');
-        }
+        $name = match (true) {
+            $this->getRoute() !== null || static::getDefaultRoute() !== null
+                => $this->getRoute() ?? static::getDefaultRoute(),
+            $this->getRouteMatch() !== null
+                => $this->getRouteMatch()->getMatchedRouteName(),
+            default => throw new Exception\DomainException('No route name could be found'),
+        };
 
         $options = ['name' => $name];
 
@@ -459,7 +455,7 @@ class Mvc extends AbstractPage
                 __METHOD__,
                 RouteMatch::class,
                 MvcRouter\RouteMatch::class,
-                is_object($matches) ? $matches::class : gettype($matches)
+                get_debug_type($matches)
             ));
         }
         $this->routeMatch = $matches;
@@ -517,7 +513,7 @@ class Mvc extends AbstractPage
                 __METHOD__,
                 RouteStackInterface::class,
                 MvcRouter\RouteStackInterface::class,
-                is_object($router) ? $router::class : gettype($router)
+                get_debug_type($router)
             ));
         }
         $this->router = $router;

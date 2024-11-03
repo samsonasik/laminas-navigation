@@ -10,7 +10,7 @@ use Laminas\Permissions\Acl\Resource\ResourceInterface;
 
 use function array_merge;
 use function is_string;
-use function substr;
+use function str_ends_with;
 
 /**
  * Represents a page that is defined by specifying a URI
@@ -73,7 +73,7 @@ class Uri extends AbstractPage
 
         $fragment = $this->getFragment();
         if (null !== $fragment) {
-            if ('#' === substr($uri, -1)) {
+            if (str_ends_with($uri, '#')) {
                 return $uri . $fragment;
             } else {
                 return $uri . '#' . $fragment;

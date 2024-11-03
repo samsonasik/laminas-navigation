@@ -11,8 +11,8 @@ use Laminas\ServiceManager\ServiceLocatorInterface;
 use Psr\Container\ContainerInterface;
 
 use function is_array;
+use function str_starts_with;
 use function strlen;
-use function strpos;
 use function strtolower;
 use function substr;
 
@@ -54,7 +54,7 @@ final class NavigationAbstractServiceFactory implements AbstractFactoryInterface
      */
     public function canCreate(ContainerInterface $container, $requestedName)
     {
-        if (0 !== strpos($requestedName, self::SERVICE_PREFIX)) {
+        if (! str_starts_with($requestedName, self::SERVICE_PREFIX)) {
             return false;
         }
         $config = $this->getConfig($container);

@@ -9,6 +9,7 @@ use Laminas\Navigation\Exception;
 use Laminas\Permissions\Acl\Resource\ResourceInterface;
 use Laminas\Permissions\Acl\Resource\ResourceInterface as AclResource;
 use Laminas\Stdlib\ArrayUtils;
+use Stringable;
 use Traversable;
 
 use function array_keys;
@@ -31,7 +32,7 @@ use function ucwords;
  *
  * @template-extends AbstractContainer<AbstractPage>
  */
-abstract class AbstractPage extends AbstractContainer
+abstract class AbstractPage extends AbstractContainer implements Stringable
 {
     /**
      * Page label
@@ -1091,9 +1092,9 @@ abstract class AbstractPage extends AbstractContainer
      *
      * @return string  page label
      */
-    public function __toString()
+    public function __toString(): string
     {
-        return $this->label;
+        return (string) $this->label;
     }
 
     // Public methods:

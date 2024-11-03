@@ -399,7 +399,7 @@ class MvcTest extends TestCase
                     $msg  = "'$invalid' is invalid for $setter(), but no ";
                     $msg .= 'Laminas\Navigation\Exception\InvalidArgumentException was thrown';
                     $this->fail($msg);
-                } catch (Navigation\Exception\InvalidArgumentException $e) {
+                } catch (Navigation\Exception\InvalidArgumentException) {
                 }
             }
         }
@@ -432,7 +432,7 @@ class MvcTest extends TestCase
                     $msg  = "'$invalid' is invalid for $setter(), but no ";
                     $msg .= 'Laminas\Navigation\Exception\InvalidArgumentException was thrown';
                     $this->fail($msg);
-                } catch (Navigation\Exception\InvalidArgumentException $e) {
+                } catch (Navigation\Exception\InvalidArgumentException) {
                 }
             }
         }
